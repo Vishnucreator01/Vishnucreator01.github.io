@@ -1,81 +1,640 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vishnu Vardhan Reddy V | DevOps Engineer & Data Analyst</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; }
-        header { text-align: center; padding-bottom: 40px; border-bottom: 1px solid #eee; }
-        h1 { margin-bottom: 10px; color: #2c3e50; }
-        .subtitle { color: #7f8c8d; font-size: 1.2em; margin-bottom: 20px; }
-        .contact-info a { margin: 0 10px; color: #3498db; text-decoration: none; }
-        section { margin-top: 40px; }
-        h2 { color: #2c3e50; border-left: 5px solid #3498db; padding-left: 15px; }
-        .project-card { background: #f9f9f9; padding: 20px; margin-bottom: 20px; border-radius: 5px; border: 1px solid #ddd; }
-        .project-title { font-weight: bold; font-size: 1.1em; }
-        .tech-stack { font-style: italic; color: #555; font-size: 0.9em; margin-top: 5px; }
-        .btn { display: inline-block; background: #3498db; color: white; padding: 8px 15px; text-decoration: none; border-radius: 4px; margin-top: 10px; font-size: 0.9em; }
-        .btn:hover { background: #2980b9; }
-    </style>
+  <meta charset="UTF-8" />
+  <title>Vishnu Vardhan Reddy V | DevOps · Data Engineering</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Vishnu Vardhan Reddy V – Aspiring DevOps Engineer and Data Scientist. I build reliable, automated cloud pipelines and turn data into scalable insights."
+  />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Icons (socials + skills) -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"
+  />
+
+  <!-- EmailJS for contact form -->
+  <!-- NOTE: REPLACE PLACEHOLDERS BELOW WITH YOUR ACTUAL KEYS! -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    defer
+  ></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
-
-<header>
-    <h1>Vishnu Vardhan Reddy V</h1>
-    <div class="subtitle">Aspiring DevOps Engineer & Data Analyst</div>
-    <div class="contact-info">
-        <a href="mailto:vardhan.vakiti@gmail.com">Email</a> |
-        <a href="https://www.linkedin.com/in/vishnuvardhanreddyv">LinkedIn</a> |
-        <a href="https://github.com/Vishnucreator01">GitHub</a>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="preloader-inner">
+      <div class="preloader-logo">VR</div>
+      <p>Loading your portfolio…</p>
     </div>
-</header>
+  </div>
 
-<section>
-    <h2>🚀 About Me</h2>
-    <p>Analytical and proactive professional with experience in data analysis, dashboard creation, and LMS management. currently transitioning into <strong>DevOps and Data Engineering</strong>. I bridge the gap between data insights and infrastructure automation using Python, SQL, Docker, and Terraform.</p>
-</section>
+  <!-- Interactive background -->
+  <canvas id="bg-canvas"></canvas>
 
-<section>
-    <h2>🛠 Featured Projects</h2>
-    
-    <div class="project-card">
-        <div class="project-title">Multi-Cloud Infrastructure as Code (IaC)</div>
-        <p>Automated cloud infrastructure provisioning across AWS, Azure, and GCP using Terraform modules. Implemented state locking and automated policy compliance checks.</p>
-        <div class="tech-stack">Tech: Terraform, AWS, Azure, GCP, CI/CD</div>
-        <br>
-        <a href="https://github.com/Vishnucreator01/multi-cloud-iac-terraform" class="btn">View Code on GitHub</a>
-    </div>
+  <div class="page-wrapper">
+    <!-- NAVBAR -->
+    <header class="navbar">
+      <div class="nav-inner">
+        <!-- New: Full Name for Professional Look -->
+        <a href="#hero" class="nav-logo">VishnuVardhan<span> Reddy.</span></a>
 
-    <div class="project-card">
-        <div class="project-title">End-to-End Microservices Pipeline</div>
-        <p>Architected a robust CI/CD pipeline using Jenkins and Kubernetes. Automates testing, code quality scans (SonarQube), and Blue-Green deployments.</p>
-        <div class="tech-stack">Tech: Jenkins, Docker, Kubernetes, Linux</div>
-        <br>
-        <a href="#" class="btn">View Code on GitHub</a> </div>
+        <nav class="nav-links" id="nav-links">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
 
-    <div class="project-card">
-        <div class="project-title">Real-Time Traffic Analysis Engine</div>
-        <p>Developed a machine learning pipeline ingesting live traffic data to predict congestion hotspots. Visualized results on an interactive dashboard.</p>
-        <div class="tech-stack">Tech: Python, Scikit-Learn, Pandas, API</div>
-        <br>
-        <a href="#" class="btn">View Code on GitHub</a> </div>
-</section>
+        <div class="nav-actions">
+          <button
+            class="icon-button theme-toggle"
+            id="theme-toggle"
+            aria-label="Toggle dark mode"
+          >
+            <i class="ri-moon-line theme-icon" id="theme-icon"></i>
+          </button>
 
-<section>
-    <h2>💼 Experience</h2>
-    <p><strong>Data Analyst</strong> | Myra's Academy (Aug 2024 - Present)<br>
-    Managed student data pipelines and automated reporting using Python and SQL.</p>
-    
-    <p><strong>LMS Intern</strong> | Myra's Academy (Jun 2024 - Jul 2024)<br>
-    Handled large-scale data uploads and supported dashboard development.</p>
-</section>
+          <button
+            class="burger"
+            id="burger"
+            aria-label="Open navigation menu"
+          >
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
 
-<section>
-    <h2>🎓 Education</h2>
-    <p><strong>B.Tech in Electronics & Communication Engineering</strong><br>
-    Sphoorthy Engineering College - JNTU Hyderabad</p>
-</section>
+    <!-- HERO -->
+    <main>
+      <section id="hero" class="hero section reveal">
+        <div class="hero-inner">
+          <!-- LEFT -->
+          <div class="hero-text">
+            <p class="eyebrow">HYDERABAD · INDIA</p>
+            <h1 class="hero-title">
+              Hello, I'm
+              <span class="gradient-text">Vishnu</span>
+              <span class="wave">👋</span>
+            </h1>
 
+            <p class="hero-subtitle typing" data-text="DevOps Engineer · Data Pipeline Builder · Cloud Enthusiast">
+              DevOps Engineer · Data Pipeline Builder · Cloud Enthusiast
+            </p>
+
+            <p class="hero-description">
+              I turn raw data into insights and build reliable, automated cloud
+              pipelines. Currently growing in DevOps, automation, and analytics
+              to solve real-world problems.
+            </p>
+
+            <!-- Current role pill -->
+            <div class="current-role-pill">
+              <span class="status-dot"></span>
+              <span class="pill-text">
+                Currently · Data Analyst · Myra's Academy · Aug 2024 — Present
+              </span>
+            </div>
+
+            <div class="hero-actions">
+              <a
+                href="Vishnu_Vardhan_Reddy_Resume.pdf"
+                class="btn primary-btn"
+                download
+              >
+                <i class="ri-download-cloud-2-line"></i>
+                <span>Download Resume</span>
+              </a>
+
+              <div class="social-icons">
+                <a
+                  href="https://github.com/Vishnucreator01"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="icon-button social github"
+                  aria-label="GitHub"
+                >
+                  <i class="ri-github-fill"></i>
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/vishnuvardhanreddyv"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="icon-button social linkedin"
+                  aria-label="LinkedIn"
+                >
+                  <i class="ri-linkedin-box-fill"></i>
+                </a>
+                <a
+                  href="mailto:vardhan.vakiti@gmail.com"
+                  class="icon-button social mail"
+                  aria-label="Email"
+                >
+                  <i class="ri-mail-fill"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT -->
+          <div class="hero-visual">
+            <div class="profile-orbit">
+              <div class="orbit-ring"></div>
+              <div class="orbit-ring orbit-ring-2"></div>
+              <div class="profile-card">
+                <img src="profile.jpg" alt="Vishnu profile" />
+                <p class="profile-caption">Tech · Data · Cloud</p>
+              </div>
+
+              <!-- Floating icons -->
+              <div class="floating-icon fi-1">
+                <i class="ri-bar-chart-box-line"></i>
+              </div>
+              <div class="floating-icon fi-2">
+                <i class="ri-cloud-line"></i>
+              </div>
+              <div class="floating-icon fi-3">
+                <i class="ri-terminal-box-line"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="section reveal">
+        <div class="section-inner about-grid">
+          <div class="section-header">
+            <h2>About Me</h2>
+            <p class="section-subtitle">
+              A data-driven engineer who loves automation, dashboards, and
+              cloud-native tools.
+            </p>
+          </div>
+
+          <div class="about-content">
+            <div class="about-text">
+              <p>
+                I'm an analytical and proactive engineer with experience in
+                <strong>data analysis, dashboard creation, and LMS management</strong>.
+                I enjoy working at the intersection of
+                <strong>analytics, DevOps, and cloud</strong> — turning messy data
+                and manual processes into clean pipelines, clear dashboards, and
+                reliable automations.
+              </p>
+
+              <p>
+                Right now, I’m focused on building skills in
+                <strong>Python, SQL, Power BI, AWS, Docker, Kubernetes, CI/CD, and Terraform</strong>,
+                while applying them to real projects that feel like something
+                you’d see in a production environment at a top tech company.
+              </p>
+            </div>
+
+            <!-- About visual: 3D-ish analytics card -->
+            <div class="about-visual">
+              <div class="about-card">
+                <div class="about-card-header">
+                  <span class="dot red"></span>
+                  <span class="dot yellow"></span>
+                  <span class="dot green"></span>
+                </div>
+                <div class="about-card-body">
+                  <div class="chart-lines">
+                    <span class="line line-1"></span>
+                    <span class="line line-2"></span>
+                    <span class="line line-3"></span>
+                  </div>
+                  <div class="chart-bars">
+                    <span class="bar bar-1"></span>
+                    <span class="bar bar-2"></span>
+                    <span class="bar bar-3"></span>
+                  </div>
+                  <p class="about-label">Analytics · DevOps · Cloud</p>
+                </div>
+              </div>
+              <div class="about-floating-tag tag-1">Data Pipelines</div>
+              <div class="about-floating-tag tag-2">Dashboards</div>
+              <div class="about-floating-tag tag-3">Automation</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills" class="section reveal">
+        <div class="section-inner">
+          <div class="section-header">
+            <h2>Skills</h2>
+            <p class="section-subtitle">
+              Core tools and technologies I use across Data, DevOps, and Cloud —
+              shown as soft pastel badges with real tech logos.
+            </p>
+          </div>
+
+          <div class="skills-grid">
+            <!-- Row 1: Data & Analytics -->
+            <div class="skill-pill">
+              <i class="devicon-python-plain colored"></i>
+              <span>Python</span>
+            </div>
+            <div class="skill-pill">
+              <i class="devicon-microsoftsqlserver-plain colored"></i>
+              <span>SQL</span>
+            </div>
+            <div class="skill-pill">
+              <i class="ri-database-2-line" style="color:#00758F;"></i>
+              <span>PostgreSQL</span>
+            </div>
+            <div class="skill-pill">
+              <i class="devicon-google-plain colored"></i>
+              <span>Power BI</span>
+            </div>
+            <div class="skill-pill">
+              <i class="devicon-pandas-original colored"></i>
+              <span>Pandas</span>
+            </div>
+
+            <!-- Row 2: DevOps & Cloud -->
+            <div class="skill-pill">
+              <i class="devicon-docker-plain colored"></i>
+              <span>Docker</span>
+            </div>
+            <div class="skill-pill">
+              <i class="devicon-kubernetes-plain colored"></i>
+              <span>Kubernetes</span>
+            </div>
+            <div class="skill-pill">
+              <i class="devicon-amazonwebservices-plain-wordmark colored"></i>
+              <span>AWS</span>
+            </div>
+            <div class="skill-pill">
+              <i class="devicon-terraform-plain colored"></i>
+              <span>Terraform</span>
+            </div>
+            <div class="skill-pill">
+              <i class="devicon-jenkins-plain colored"></i>
+              <span>Jenkins (CI/CD)</span>
+            </div>
+
+            <!-- Row 3: Fundamentals & Other -->
+            <div class="skill-pill">
+              <i class="devicon-git-plain colored"></i>
+              <span>Git &amp; GitHub</span>
+            </div>
+            <div class="skill-pill">
+              <i class="devicon-linux-plain colored"></i>
+              <span>Linux (Shell)</span>
+            </div>
+            <div class="skill-pill">
+              <i class="ri-terminal-box-line" style="color:#22c55e;"></i>
+              <span>Automation</span>
+            </div>
+            <div class="skill-pill">
+              <i class="ri-slideshow-3-line"></i>
+              <span>LMS Mgmt.</span>
+            </div>
+            <div class="skill-pill">
+              <i class="ri-file-excel-2-line excel-icon"></i>
+              <span>Excel</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="experience" class="section reveal">
+        <div class="section-inner">
+          <div class="section-header">
+            <h2>Experience</h2>
+            <p class="section-subtitle">
+              A LinkedIn-style timeline showing my growth in data and automation roles.
+            </p>
+          </div>
+
+          <div class="timeline">
+            <!-- Data Analyst -->
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-line"></div>
+
+              <article class="exp-card">
+                <div class="exp-header">
+                  <div class="exp-logo">
+                    <!-- Placeholder: Replace with actual logo image -->
+                    <img src="myra-logo.png" alt="Myra's Academy logo" />
+                  </div>
+                  <div class="exp-title-block">
+                    <h3>Data Analyst</h3>
+                    <p class="exp-meta">
+                      Myra's Academy · Full-time<br />
+                      Aug 2024 — Present · Hyderabad, India · On-site
+                    </p>
+                  </div>
+                </div>
+
+                <ul class="exp-points">
+                  <li>
+                    Managed and analyzed student and LMS data, utilizing **Python and SQL** to streamline reporting and automate manual data tasks.
+                  </li>
+                  <li>
+                    Built and maintained **Power BI dashboards** for tracking performance, engagement, and growth, driving data-driven decisions.
+                  </li>
+                  <li>
+                    Collaborated with operations to ensure **data consistency** and improve LMS data quality and reporting workflows.
+                  </li>
+                </ul>
+
+                <div class="exp-skills-label">Key skills</div>
+                <div class="exp-skill-row">
+                  <span class="exp-skill-pill"> Python </span>
+                  <span class="exp-skill-pill"> SQL </span>
+                  <span class="exp-skill-pill"> Power BI </span>
+                  <span class="exp-skill-pill"> Data Visualization </span>
+                  <span class="exp-skill-pill"> LMS Data </span>
+                </div>
+              </article>
+            </div>
+
+            <!-- LMS Intern -->
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-line end"></div>
+
+              <article class="exp-card">
+                <div class="exp-header">
+                  <div class="exp-logo">
+                    <!-- Placeholder: Replace with actual logo image -->
+                    <img src="myra-logo.png" alt="Myra's Academy logo" />
+                  </div>
+                  <div class="exp-title-block">
+                    <h3>LMS Administrator · Intern</h3>
+                    <p class="exp-meta">
+                      Myra's Academy · Internship<br />
+                      Jun 2024 — Jul 2024 · Hyderabad, India · On-site
+                    </p>
+                  </div>
+                </div>
+
+                <ul class="exp-points">
+                  <li>
+                    Managed the LMS platform, ensuring course content, assessments, and student data were accurate and up to date.
+                  </li>
+                  <li>
+                    Assisted in structuring data pipelines and improving data upload accuracy for large volumes of student records.
+                  </li>
+                  <li>
+                    Supported dashboard development and provided reports and basic analytics on student performance to staff.
+                  </li>
+                </ul>
+
+                <div class="exp-skills-label">Key skills</div>
+                <div class="exp-skill-row">
+                  <span class="exp-skill-pill"> Data Management </span>
+                  <span class="exp-skill-pill"> Data Quality </span>
+                  <span class="exp-skill-pill"> LMS Administration </span>
+                  <span class="exp-skill-pill"> Stakeholder Support </span>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects" class="section reveal">
+        <div class="section-inner">
+          <div class="section-header">
+            <!-- NEW PROFESSIONAL TITLE -->
+            <h2>Engineering Portfolio & Case Studies</h2>
+            <p class="section-subtitle">Five world-class projects combining **Scalability, DevOps, and Data Science** to demonstrate production-level experience.</p>
+          </div>
+
+          <div class="projects-grid">
+            <!-- DevOps 1 - Terraform IaC -->
+            <article class="project-card tilt">
+              <div class="project-pill">DevOps · Multi-Cloud</div>
+              <h3>Modular IaC Framework for Multi-Cloud Deployment</h3>
+              <p>
+                End-to-end infrastructure provisioning across AWS, Azure, and
+                GCP using advanced **Terraform modules**. Implemented remote state management (S3 / Blob) and environment separation to simulate an enterprise-grade platform team.
+              </p>
+              <div class="project-tags">
+                <span>Terraform</span>
+                <span>AWS</span>
+                <span>Azure</span>
+                <span>GCP</span>
+                <span>IaC</span>
+              </div>
+            </article>
+
+            <!-- DevOps 2 - CI/CD Pipeline -->
+            <article class="project-card tilt">
+              <div class="project-pill">DevOps · CI/CD</div>
+              <h3>Microservices CI/CD with Jenkins and Kubernetes</h3>
+              <p>
+                Production-style pipeline that tests, builds, and deploys
+                multiple microservices in **Docker** to a **Kubernetes** cluster. Includes **SonarQube** quality gates, container scanning, and blue-green deployments.
+              </p>
+              <div class="project-tags">
+                <span>Jenkins</span>
+                <span>Docker</span>
+                <span>Kubernetes</span>
+                <span>SonarQube</span>
+                <span>CI/CD</span>
+              </div>
+            </article>
+
+            <!-- DevOps 3 - Disaster Recovery -->
+            <article class="project-card tilt">
+              <div class="project-pill">DevOps · SRE</div>
+              <h3>Automated Disaster Recovery & Auto-Scaling System</h3>
+              <p>
+                Architected automated backup, failover, and scaling for cloud workloads
+                using **AWS Lambda** (Serverless) and **Terraform**. Simulated DR drills focusing on RTO/RPO to mirror Site Reliability Engineering practices.
+              </p>
+              <div class="project-tags">
+                <span>AWS Lambda</span>
+                <span>Terraform</span>
+                <span>CloudWatch</span>
+                <span>SRE</span>
+              </div>
+            </article>
+
+            <!-- Data Science 1 - Traffic Analysis -->
+            <article class="project-card tilt">
+              <div class="project-pill">Data Science · ML</div>
+              <h3>Real-Time Traffic Analysis & Optimization Engine</h3>
+              <p>
+                Developed a pipeline for live traffic data ingestion, applying **ML models** to predict congestion hotspots and optimize signal timings. Visualized for anomaly detection and smart-city style insights.
+              </p>
+              <div class="project-tags">
+                <span>Python</span>
+                <span>scikit-learn</span>
+                <span>API Integration</span>
+                <span>Dashboards</span>
+              </div>
+            </article>
+
+            <!-- Data Science 2 - Sentiment Analysis -->
+            <article class="project-card tilt">
+              <div class="project-pill">Data Science · NLP</div>
+              <h3>YouTube Sentiment Analysis Pipeline (BERT & NLP)</h3>
+              <p>
+                Built an NLP pipeline to classify sentiment of YouTube comments, tracking audience mood over time. Used **BERT-style models** to derive content strategy insights relevant to media and tech companies.
+              </p>
+              <div class="project-tags">
+                <span>Python</span>
+                <span>NLP</span>
+                <span>Transformers</span>
+                <span>Visualization</span>
+                <span>BigQuery</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="section reveal">
+        <div class="section-inner contact-grid">
+          <div class="section-header">
+            <h2>Contact</h2>
+            <p class="section-subtitle">
+              If you’d like to talk about roles, projects, or collaborations,
+              feel free to reach out.
+            </p>
+          </div>
+
+          <div class="contact-content">
+            <!-- Left: Form -->
+            <div class="contact-form-card">
+              <h3>Write to me</h3>
+              <!-- Form uses EmailJS for serverless email submission -->
+              <form id="contact-form">
+                <div class="field">
+                  <label for="name">Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="from_name"
+                    placeholder="Your name"
+                    required
+                  />
+                </div>
+
+                <div class="field">
+                  <label for="email">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="reply_to"
+                    placeholder="you@example.com"
+                    required
+                  />
+                </div>
+
+                <div class="field">
+                  <label for="message">Message</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="4"
+                    placeholder="Tell me about the role, project, or idea…"
+                    required
+                  ></textarea>
+                </div>
+
+                <button type="submit" class="btn primary-btn">
+                  <i class="ri-send-plane-2-line"></i>
+                  <span>Send Message</span>
+                </button>
+                <p class="form-status" id="form-status"></p>
+              </form>
+            </div>
+
+            <!-- Right: quick contact (Updated with YouTube and Instagram) -->
+            <div class="contact-card">
+              <div class="contact-row">
+                <i class="ri-mail-fill contact-icon mail"></i>
+                <div>
+                  <h4>Email</h4>
+                  <a href="mailto:vardhan.vakiti@gmail.com"
+                    >vardhan.vakiti@gmail.com</a
+                  >
+                </div>
+              </div>
+
+              <div class="contact-row">
+                <i class="ri-linkedin-box-fill contact-icon linkedin"></i>
+                <div>
+                  <h4>LinkedIn</h4>
+                  <a
+                    href="https://www.linkedin.com/in/vishnuvardhanreddyv"
+                    target="_blank"
+                    rel="noreferrer"
+                    >vishnuvardhanreddyv</a
+                  >
+                </div>
+              </div>
+
+              <div class="contact-row">
+                <i class="ri-github-fill contact-icon github"></i>
+                <div>
+                  <h4>GitHub</h4>
+                  <a
+                    href="https://github.com/Vishnucreator01"
+                    target="_blank"
+                    rel="noreferrer"
+                    >Vishnucreator01</a
+                  >
+                </div>
+              </div>
+
+              <!-- NEW: YouTube Channel -->
+              <div class="contact-row">
+                <i class="ri-youtube-fill contact-icon youtube"></i>
+                <div>
+                  <h4>YouTube Channel</h4>
+                  <a href="https://www.youtube.com/@vishnureddyyoutube" target="_blank" rel="noreferrer">
+                    VishnuCreator
+                  </a>
+                </div>
+              </div>
+
+              <!-- NEW: Instagram -->
+              <div class="contact-row">
+                <i class="ri-instagram-fill contact-icon instagram"></i>
+                <div>
+                  <h4>Instagram</h4>
+                  <a href="https://www.instagram.com/vardhann_/" target="_blank" rel="noreferrer">
+                    vardhann_
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <p>
+        © 2025 Vishnu Vardhan Reddy V · Built with love for Data, DevOps &amp; Cloud.
+      </p>
+    </footer>
+  </div>
 </body>
 </html>
