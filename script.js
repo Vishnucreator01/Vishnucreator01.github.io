@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       try {
         // NOTE: REPLACE THESE PLACEHOLDERS WITH YOUR ACTUAL EmailJS SERVICE & TEMPLATE IDs!
-        await emailjs.send("service_72n093k", "template_c75zjcp", formData);
+        await emailjs.send("service_2debsvl", "template_c75zjcp", formData);
         statusEl.textContent = "Message sent! I’ll get back to you soon.";
         statusEl.style.color = "#16a34a";
         form.reset();
