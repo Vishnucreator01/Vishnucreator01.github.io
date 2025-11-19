@@ -2,7 +2,7 @@
 
 // Init EmailJS & set up contact form
 document.addEventListener("DOMContentLoaded", () => {
-  // ---- EmailJS ----
+  // ---- EmailJS Setup ----
   if (window.emailjs) {
     // NOTE: REPLACE THESE PLACEHOLDERS WITH YOUR ACTUAL EmailJS KEYS!
     emailjs.init("T6ywNdQup20o7n8MF");
@@ -14,7 +14,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if (form) {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      if (!window.emailjs) return;
+      if (!window.emailjs) {
+        statusEl.textContent = "Email service not initialized.";
+        statusEl.style.color = "#dc2626";
+        return;
+      }
 
       statusEl.textContent = "Sending...";
       statusEl.style.color = "#6b7280";
@@ -32,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
         statusEl.style.color = "#16a34a";
         form.reset();
       } catch (err) {
-        console.error(err);
+        console.error("EmailJS Error:", err);
         statusEl.textContent =
           "Something went wrong. You can also email me directly.";
         statusEl.style.color = "#dc2626";
@@ -61,9 +65,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // FORCE DARK MODE BY DEFAULT, as requested for the background aesthetic
+  // FORCE DARK MODE BY DEFAULT
   const storedTheme = localStorage.getItem("theme");
-  applyTheme(storedTheme || "dark"); 
+  applyTheme(storedTheme || "dark");
 
   if (themeToggle) {
     themeToggle.addEventListener("click", () => {
@@ -135,50 +139,146 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // ---- Interactive geometric background (FIX: Replaces fluid blobs) ----
-  initGeometricBackground();
+  // ---- START: World Class Animated Background ----
+  initWorldClassParticles();
 });
 
-// Simple Geometric Grid Effect (similar to toukoum.fr style)
-function initGeometricBackground() {
+// Advanced Particle Animation with Scroll Parallax
+function initWorldClassParticles() {
   const canvas = document.getElementById("bg-canvas");
   if (!canvas) return;
   const ctx = canvas.getContext("2d");
 
-  let W, H;
-  function onResize() {
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = window.innerHeight;
+  let width, height;
+  let particles = [];
+  
+  // Configuration
+  const particleCount = window.innerWidth < 768 ? 40 : 80; // Fewer on mobile for performance
+  const connectionDistance = 120;
+  const mouseDistance = 150;
+
+  // Mouse tracking
+  let mouse = { x: null, y: null };
+  window.addEventListener("mousemove", (e) => {
+    mouse.x = e.x;
+    mouse.y = e.y;
+  });
+  window.addEventListener("mouseleave", () => {
+    mouse.x = null;
+    mouse.y = null;
+  });
+
+  // Scroll tracking for Parallax
+  let scrollY = window.scrollY;
+  window.addEventListener("scroll", () => {
+    scrollY = window.scrollY;
+  });
+
+  // Resize handling
+  function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
   }
-  window.addEventListener("resize", onResize);
-  onResize(); // Initial call to set dimensions
+  window.addEventListener("resize", resize);
+  resize();
 
-  // Subtle grid lines for dark mode aesthetic
-  ctx.strokeStyle = "rgba(148, 163, 184, 0.08)"; 
-  ctx.lineWidth = 1;
-  const step = 40; // Spacing of the grid
+  // Particle Class
+  class Particle {
+    constructor() {
+      this.x = Math.random() * width;
+      this.y = Math.random() * height;
+      this.vx = (Math.random() - 0.5) * 0.5; // Random horizontal velocity
+      this.vy = (Math.random() - 0.5) * 0.5; // Random vertical velocity
+      this.size = Math.random() * 2 + 1; // Random size
+      this.baseY = this.y; // Store original Y for parallax calculation
+    }
 
-  function drawGrid() {
-    ctx.clearRect(0, 0, W, H);
+    update() {
+      // Basic movement
+      this.x += this.vx;
+      this.y += this.vy;
+
+      // Parallax Effect: Move particles slightly based on scroll position
+      // The factor (0.2) determines how fast they move relative to scroll
+      this.y = this.baseY - (scrollY * 0.1 * this.size); 
+      // Wrap around screen (infinite scroll feel)
+      if (this.y < -50) {
+          this.y = height + 50;
+          this.baseY = height + 50 + (scrollY * 0.1 * this.size); 
+      }
+
+      // Boundary check (bounce off walls)
+      if (this.x < 0 || this.x > width) this.vx *= -1;
+      
+      // Mouse interaction (move away from mouse)
+      if (mouse.x != null) {
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance < mouseDistance) {
+            const forceDirectionX = dx / distance;
+            const forceDirectionY = dy / distance;
+            const force = (mouseDistance - distance) / mouseDistance;
+            const directionX = forceDirectionX * force * 3; // Push strength
+            const directionY = forceDirectionY * force * 3;
+            this.x -= directionX;
+            this.y -= directionY;
+        }
+      }
+    }
+
+    draw() {
+      ctx.fillStyle = "rgba(148, 163, 184, 0.4)"; // Particle color (Slate-400 with opacity)
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  // Initialize Particles
+  function initParticles() {
+    particles = [];
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+  }
+  initParticles();
+
+  // Animation Loop
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
     
-    // Draw horizontal lines
-    for (let i = 0; i < H; i += step) {
-      ctx.beginPath();
-      ctx.moveTo(0, i);
-      ctx.lineTo(W, i);
-      ctx.stroke();
-    }
+    // Dark Mode Background Check (Optional: can rely on CSS background-color)
+    // ctx.fillStyle = "#020617"; 
+    // ctx.fillRect(0,0, width, height);
 
-    // Draw vertical lines
-    for (let i = 0; i < W; i += step) {
-      ctx.beginPath();
-      ctx.moveTo(i, 0);
-      ctx.lineTo(i, H);
-      ctx.stroke();
-    }
+    for (let i = 0; i < particles.length; i++) {
+      particles[i].update();
+      particles[i].draw();
 
-    requestAnimationFrame(drawGrid);
+      // Draw connections
+      for (let j = i; j < particles.length; j++) {
+        let dx = particles[i].x - particles[j].x;
+        let dy = particles[i].y - particles[j].y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < connectionDistance) {
+          ctx.beginPath();
+          // Dynamic opacity based on distance
+          let opacity = 1 - (distance / connectionDistance);
+          ctx.strokeStyle = `rgba(148, 163, 184, ${opacity * 0.2})`; 
+          ctx.lineWidth = 1;
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(animate);
   }
 
-  drawGrid();
+  // Ensure dark mode class is set
+  document.body.classList.add('dark');
+  
+  animate();
 }
